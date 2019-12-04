@@ -1,5 +1,5 @@
 from room import Room
-
+import random
 # Declare all the rooms
 
 room = {
@@ -37,15 +37,22 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
-# Make a new player object that is currently in the 'outside' room.
 
+# Make a new player object that is currently in the 'outside' room.
+playerOne = Player("Frito Bandito", 'outside')
 # Write a loop that:
 #
 # * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
+# * Prints the current description (the textwrap module might be useful here)
+
+#starting loop
+while playing:
+    #prints current room name
+    print("\nYou are in the", room[playerOne.current_room].name,".\n", room[playerOne.current_room].description, ".")
+
 # * Waits for user input and decides what to do.
 #
-# If the user enters a cardinal direction, attempt to move to the room there.
+# If the user enters a cardinal direction, attempt to move to the room there
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
