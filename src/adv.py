@@ -61,6 +61,21 @@ while playing:
         print("Thanks for playing, Goodbye")
         sys.exit(1)
 
+    if user_direction == 'n' and room[playerOne.current_room].n_to:
+        room[playerOne.current_room] = room[playerOne.current_room].n_to
+
+    elif user_direction == "s" and room[playerOne.current_room].s_to:
+        room[playerOne.current_room] = room[playerOne.current_room].s_to
+
+    elif user_direction == "e" and room[playerOne.current_room].e_to:
+        room[playerOne.current_room] = room[playerOne.current_room].e_to
+
+    elif user_direction == "w" and room[playerOne.current_room].w_to:
+        room[playerOne.current_room] = room[playerOne.current_room].w_to
+
+    else:
+        print("That movement is not allowed, please pick a different direction!")
+
 
 #
 # If the user enters a cardinal direction, attempt to move to the room there
