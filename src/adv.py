@@ -1,4 +1,6 @@
+import sys
 from room import Room
+from player import Player
 import random
 # Declare all the rooms
 
@@ -44,13 +46,22 @@ playerOne = Player("Frito Bandito", 'outside')
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here)
-
-#starting loop
+playing = True
+# starting loop
 while playing:
-    #prints current room name
-    print("\nYou are in the", room[playerOne.current_room].name,".\n", room[playerOne.current_room].description, ".")
+    # prints current room name
+    print("\nYou are in the", room[playerOne.current_room].name,
+          ".\n", room[playerOne.current_room].description, ".")
 
 # * Waits for user input and decides what to do.
+    user_direction = input(
+        "Enter a cardinal direction the player should move to \n n for North \n e for East \n \n s for South\n w for West \n q to Quit \n Your choice: ").lower()
+
+    if user_direction == 'q':
+        print("Thanks for playing, Goodbye")
+        sys.exit(1)
+
+
 #
 # If the user enters a cardinal direction, attempt to move to the room there
 # Print an error message if the movement isn't allowed.
