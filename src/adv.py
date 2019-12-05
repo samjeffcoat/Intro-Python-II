@@ -1,5 +1,7 @@
+import sys
 from room import Room
-
+from player import Player
+import random
 # Declare all the rooms
 
 room = {
@@ -37,15 +39,46 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
-# Make a new player object that is currently in the 'outside' room.
 
+# Make a new player object that is currently in the 'outside' room.
+playerOne = Player("Frito Bandito", 'outside')
 # Write a loop that:
 #
 # * Prints the current room name
-# * Prints the current description (the textwrap module might be useful here).
+# * Prints the current description (the textwrap module might be useful here)
+playing = True
+# starting loop
+while playing:
+    # prints current room name
+    print("\nYou are in the", room[playerOne.current_room].name,
+          ".\n", room[playerOne.current_room].description, ".")
+
 # * Waits for user input and decides what to do.
+    user_direction = input(
+        "Enter a cardinal direction the player should move to \n n for North \n e for East \n \n s for South\n w for West \n q to Quit \n Your choice: ").lower()
+
+    if user_direction == 'q':
+        print("Thanks for playing, Goodbye")
+        sys.exit(1)
+
+    if user_direction == 'n' and room[playerOne.current_room].n_to:
+        room[playerOne.current_room] = room[playerOne.current_room].n_to
+
+    elif user_direction == "s" and room[playerOne.current_room].s_to:
+        room[playerOne.current_room] = room[playerOne.current_room].s_to
+
+    elif user_direction == "e" and room[playerOne.current_room].e_to:
+        room[playerOne.current_room] = room[playerOne.current_room].e_to
+
+    elif user_direction == "w" and room[playerOne.current_room].w_to:
+        room[playerOne.current_room] = room[playerOne.current_room].w_to
+
+    else:
+        print("That movement is not allowed, please pick a different direction!")
+
+
 #
-# If the user enters a cardinal direction, attempt to move to the room there.
+# If the user enters a cardinal direction, attempt to move to the room there
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
